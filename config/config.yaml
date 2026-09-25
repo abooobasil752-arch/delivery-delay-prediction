@@ -1,0 +1,31 @@
+project:
+  name: "order_delivery"
+  version: "1.0.0"
+
+data:
+  train_file: "./data/processed/train_processed.parquet"
+  val_file: "./data/processed/val_processed.parquet"
+  test_file: "./data/processed/test_processed.parquet"
+
+model:
+  name: "RandomForest"
+  type: "RandomForest"
+  hyperparameters:
+    n_estimators: 100
+    max_depth: 12
+    random_state: 42
+
+artifacts:
+  model_path: "./models/final_model.joblib"
+  scaler_path: "./models/scaler.joblib"
+  imputer_path: "./models/imputer.joblib"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  title: "Order Delivery Prediction"
+  version: "1.0.0"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
