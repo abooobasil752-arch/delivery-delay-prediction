@@ -1,50 +1,50 @@
-# MLOps Task 3: Production Inference Service
+# Delivery Delay Prediction Service
 
-> تحويل نماذج التعلم الآلي من Jupyter Notebooks إلى خدمة إنتاجية احترافية
+> Converting a machine learning model from Jupyter Notebooks into a production-grade inference service
 
-## 📋 نظرة عامة
+## 📋 Overview
 
-خدمة API متقدمة وموثوقة للتنبؤ بتأخر التسليمات باستخدام أحدث تقنيات MLOps:
+An advanced, reliable API service for predicting delivery delays, built with modern MLOps practices:
 
-- ✅ **FastAPI** - Web Framework سريع وآمن
-- ✅ **Random Forest** - نموذج تعلم آلي محسّن
-- ✅ **Docker & Docker Compose** - حاويات للتوزيع
-- ✅ **GitHub Actions** - CI/CD مؤتمت
-- ✅ **DVC** - إدارة البيانات والنماذج
-- ✅ **MLflow** - تتبع التجارب والنماذج
-- ✅ **Great Expectations** - التحقق من جودة البيانات
-- ✅ **Pytest** - اختبارات شاملة
-- ✅ **Monitoring & Logging** - مراقبة الأداء
+- ✅ **FastAPI** - Fast and secure web framework
+- ✅ **Random Forest** - Optimized machine learning model
+- ✅ **Docker & Docker Compose** - Containerized deployment
+- ✅ **GitHub Actions** - Automated CI/CD
+- ✅ **DVC** - Data and model version control
+- ✅ **MLflow** - Experiment and model tracking
+- ✅ **Great Expectations** - Data quality validation
+- ✅ **Pytest** - Comprehensive testing
+- ✅ **Monitoring & Logging** - Performance monitoring
 
 ---
 
-## 🏗️ هيكل المشروع
+## 🏗️ Project Structure
 
 ```
-mlops-task3-delivery/
+delivery-delay-prediction/
 ├── 📁 app/
 │   ├── __init__.py
 │   ├── main.py              # FastAPI endpoints
 │   └── schemas.py           # Pydantic models
 ├── 📁 src/
 │   ├── __init__.py
-│   ├── data.py              # معالجة البيانات
-│   ├── prediction.py        # Pipeline التنبؤ
-│   ├── utils.py             # دوال مساعدة
-│   ├── mlflow_utils.py      # تكامل MLflow
-│   └── monitoring.py        # مراقبة الأداء
+│   ├── data.py              # Data processing
+│   ├── prediction.py        # Prediction pipeline
+│   ├── utils.py             # Helper functions
+│   ├── mlflow_utils.py      # MLflow integration
+│   └── monitoring.py        # Performance monitoring
 ├── 📁 config/
-│   └── config.yaml          # إعدادات المشروع
+│   └── config.yaml          # Project configuration
 ├── 📁 data/
-│   ├── processed/           # بيانات معالجة
+│   ├── processed/           # Processed data
 │   └── expectations.py      # Great Expectations
-├── 📁 models/               # ملفات النموذج
+├── 📁 models/               # Model artifacts
 ├── 📁 tests/
-│   └── test_prediction.py   # اختبارات
+│   └── test_prediction.py   # Tests
 ├── 📁 notebooks/            # Jupyter notebooks
-├── 📁 logs/                 # السجلات
+├── 📁 logs/                 # Logs
 ├── 📁 .github/workflows/
-│   └── ci.yml               # CI/CD Pipeline
+│   └── ci.yml               # CI/CD pipeline
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -55,63 +55,63 @@ mlops-task3-delivery/
 
 ---
 
-## 📦 المتطلبات
+## 📦 Requirements
 
 - **Python**: 3.12+
-- **pip**: مدير الحزم
-- **Git**: للـ Version Control
-- **Docker**: اختياري
+- **pip**: package manager
+- **Git**: for version control
+- **Docker**: optional
 
 ---
 
-## ⚙️ الإعداد والتثبيت
+## ⚙️ Setup & Installation
 
-### 1️⃣ استنساخ المشروع
+### 1️⃣ Clone the project
 ```bash
-git clone https://github.com/abooobasil752-arch/mlops-task3-delivery.git
-cd mlops-task3-delivery
+git clone https://github.com/abooobasil752-arch/delivery-delay-prediction.git
+cd delivery-delay-prediction
 ```
 
-### 2️⃣ إنشاء Virtual Environment
+### 2️⃣ Create a virtual environment
 ```bash
 python3 -m venv venv
 source venv/bin/activate  # Linux/Mac
-# أو
+# or
 venv\Scripts\activate  # Windows
 ```
 
-### 3️⃣ تثبيت المكتبات
+### 3️⃣ Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ إعداد البيانات والنموذج
+### 4️⃣ Set up data and model
 ```bash
 python setup_data_and_models.py
 ```
 
 ---
 
-## 🚀 التشغيل
+## 🚀 Running the Service
 
-### تشغيل API محلياً
+### Run the API locally
 ```bash
 python -m uvicorn app.main:app --reload --port 8000
 ```
 
-الـ API متاح على:
+The API is available at:
 - 🌐 `http://localhost:8000`
 - 📚 `http://localhost:8000/docs` (Swagger)
 - 🔧 `http://localhost:8000/redoc` (ReDoc)
 
-### مع Docker Compose
+### With Docker Compose
 ```bash
 docker-compose up --build
 ```
 
 ---
 
-## 🔮 مثال الاستخدام
+## 🔮 Usage Example
 
 ```bash
 curl -X POST http://localhost:8000/predict \
@@ -129,7 +129,7 @@ curl -X POST http://localhost:8000/predict \
   }'
 ```
 
-**الرد:**
+**Response:**
 ```json
 {
   "order_id": "ORD_000001",
@@ -141,20 +141,20 @@ curl -X POST http://localhost:8000/predict \
 
 ---
 
-## ✅ الاختبارات
+## ✅ Testing
 
 ```bash
-# تشغيل الاختبارات
+# Run tests
 pytest
 
-# مع تفاصيل
+# Verbose
 pytest -v
 
-# مع تغطية
+# With coverage
 pytest --cov=src --cov-report=html
 ```
 
-**النتائج:**
+**Results:**
 ```
 tests/test_prediction.py::test_pipeline_loads PASSED
 tests/test_prediction.py::test_model_loaded PASSED
@@ -164,29 +164,29 @@ tests/test_prediction.py::test_prediction_shape PASSED
 
 ---
 
-## 📊 تتبع التجارب مع MLflow
+## 📊 Experiment Tracking with MLflow
 
 ```bash
 mlflow ui
-# ثم افتح: http://localhost:5000
+# then open: http://localhost:5000
 ```
 
 ---
 
-## 📊 التحقق من جودة البيانات
+## 📊 Data Quality Validation
 
-المشروع يتحقق تلقائياً من:
-- ✅ وجود جميع الأعمدة المطلوبة
-- ✅ عدم وجود قيم سالبة
-- ✅ `day_of_week` بين 0-6
-- ✅ `hour_of_day` بين 0-23
-- ✅ عدم وجود null values
+The project automatically validates:
+- ✅ All required columns are present
+- ✅ No negative values
+- ✅ `day_of_week` is between 0-6
+- ✅ `hour_of_day` is between 0-23
+- ✅ No null values
 
 ---
 
-## 📈 المراقبة والتسجيل
+## 📈 Monitoring & Logging
 
-جميع التنبؤات تُسجل في `logs/predictions.log` بصيغة JSON:
+All predictions are logged to `logs/predictions.log` in JSON format:
 
 ```json
 {
@@ -200,26 +200,26 @@ mlflow ui
 
 ---
 
-## 🔄 CI/CD مع GitHub Actions
+## 🔄 CI/CD with GitHub Actions
 
-عند كل push للـ `main` branch:
-1. ✅ تثبيت المكتبات
-2. ✅ تشغيل الاختبارات
-3. ✅ بناء صورة Docker
-4. ✅ نشر النتائج
+On every push to the `main` branch:
+1. ✅ Install dependencies
+2. ✅ Run tests
+3. ✅ Build Docker image
+4. ✅ Publish results
 
 ---
 
 ## 🐳 Docker
 
 ```bash
-# بناء الصورة
-docker build -t mlops-task3 .
+# Build the image
+docker build -t delivery-delay-prediction .
 
-# تشغيل الحاوية
-docker run -p 8000:8000 mlops-task3
+# Run the container
+docker run -p 8000:8000 delivery-delay-prediction
 
-# مع Docker Compose
+# With Docker Compose
 docker-compose up --build
 ```
 
@@ -228,21 +228,21 @@ docker-compose up --build
 ## 📁 DVC (Data Version Control)
 
 ```bash
-# تهيئة DVC
+# Initialize DVC
 dvc init
 
-# تتبع البيانات
+# Track data
 dvc add data/processed/train_processed.parquet
 
-# السحب من النسخة السابقة
+# Pull from remote
 dvc pull
 ```
 
 ---
 
-## 🔧 معالجة الأخطاء الشائعة
+## 🔧 Troubleshooting
 
-### Port 8000 مشغول
+### Port 8000 already in use
 ```bash
 python -m uvicorn app.main:app --port 9000
 ```
@@ -261,7 +261,7 @@ dvc init
 
 ---
 
-## 📊 مقاييس الأداء
+## 📊 Performance Metrics
 
 - **ROC-AUC**: 0.4844
 - **Accuracy**: ~50%
@@ -269,7 +269,7 @@ dvc init
 
 ---
 
-## 📖 المراجع
+## 📖 References
 
 - 🔗 [FastAPI](https://fastapi.tiangolo.com/)
 - 🔗 [DVC](https://dvc.org/)
@@ -280,21 +280,12 @@ dvc init
 
 ---
 
-## 👨‍💻 المؤلف
+## 👨‍💻 Author
 
-**abalrahman**
-
----
-
-## 📅 معلومات المشروع
-
-- **المقرر**: MLOps Training 2026/2027
-- **المهمة**: Task 3 - Production Inference Service
-- **التاريخ**: September 2026
-- **الحالة**: ✅ مكتمل
+**Abdulrahman Basil**
 
 ---
 
-Made with ❤️ for MLOps Training
+Made with ❤️ for MLOps
 
-🚀 شكراً لاستخدام هذا المشروع!
+🚀 Thanks for checking out this project!
